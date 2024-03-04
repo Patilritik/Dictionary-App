@@ -1,17 +1,17 @@
 
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { useState } from "react"
 import './Search.css'
 
 function Search() {
   const [mydata, setmyData] = useState({});
+  const inputref = useRef(null)
 
   const getWord = () => {
-    const input = document.querySelector('input').value;
-    document.querySelector('input').value = "";
+    
     try {
       
-      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
+      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputref.current.value}`)
         .then(response => {
           if (!response.ok) {
             alert("Sorry the Word is not Present ....😔")    
@@ -36,7 +36,7 @@ function Search() {
       <div class="min-w-screen min-h-screen bg-gray-800 flex   px-5 py-5 ">
         <div class="w-full mx-auto rounded-xl bg-gray-100 shadow-lg p-10 text-gray-800 relative overflow-hidden resize-x min-w-80 max-w-3xl" >
           <div class="relative mt-1">
-            <input type="text" id="password" class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors" placeholder="Search word here..." />
+            <input ref={inputref} type="text" id="password" class="w-full pl-3 pr-10 py-2 border-2 border-gray-200 rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors" placeholder="Search word here..." />
             <button onClick={getWord} class="block w-7 h-7 text-center text-xl leading-0 absolute top-2 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"><i class="mdi mdi-magnify"></i></button>
           </div>
           <div class="absolute top-0 left-0 w-full h-2 flex">

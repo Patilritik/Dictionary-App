@@ -35,9 +35,7 @@ Follow these instructions to get the project up and running on your local machin
     npm run dev  
 
  5. Build
-  npm run build
-
-  
+    npm run build
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
